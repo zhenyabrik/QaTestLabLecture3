@@ -32,9 +32,10 @@ public class CatalogPage {
         WebElement categorySubMenuElement = driver.findElement(DashboardPage.getCatalogItem());
         Actions actions = new Actions(driver);
         actions.moveToElement(categorySubMenuElement).build().perform();
-        categorySubMenuElement.findElement(categorySubItem).click();
 
         WebDriverWait wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.elementToBeClickable(categorySubItem));
+        categorySubMenuElement.findElement(categorySubItem).click();
         wait.until(ExpectedConditions.elementToBeClickable(addCategoryButton));
         driver.findElement(addCategoryButton).click();
         driver.findElement(newCategoryNameInput).sendKeys(categoryName);
